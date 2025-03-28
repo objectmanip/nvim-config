@@ -1,0 +1,86 @@
+{
+  "suggest.enablePreselect": true,
+  "suggest.noselect": false,
+  "suggest.triggerCompletionWait": 50,
+  "suggest.completeFunctionCalls": true,
+
+  "python.pythonPath": "C:/Users/Florian/AppData/Local/Programs/Python/Python312/python.exe",
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.autoImportCompletions": true,
+  "python.formatting.provider": "black",
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+
+  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.checkOnSave.command": "clippy",
+  "rust-analyzer.inlayHints.enable": true,
+  "rust-analyzer.diagnostics.disabled": ["inactive-code"],
+  "rust-analyzer.completion.autoimport.enable": true,
+
+  "lua.runtime.version": "LuaJIT",
+  "lua.runtime.path": [
+    "?.lua",
+    "?/init.lua",
+    "${VIMRUNTIME}/lua",
+    "${VIMRUNTIME}/lua/vim/lsp"
+  ],
+  "lua.diagnostics.globals": ["vim"],
+  "lua.workspace.library": [
+    "${VIMRUNTIME}/lua",
+    "${VIMRUNTIME}/lua/vim/lsp"
+  ],
+  "lua.workspace.maxPreload": 1000,
+  "lua.workspace.preloadFileSize": 500,
+  "lua.telemetry.enable": false,
+
+  "html.suggest.html5": true,
+  "html.suggest.htmx": true,
+  "html.validate.scripts": true,
+  "html.validate.styles": true,
+
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "/.github/workflows/*",
+    "https://json.schemastore.org/ansible-stable-2.9.json": "/playbooks/*",
+    "kubernetes": "/*.k8s.yaml"
+  },
+  "yaml.validate": true,
+  "yaml.hover": true,
+  "yaml.completion": true,
+
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "/package.json"
+      ],
+      "url": "https://json.schemastore.org/package.json"
+    },
+    {
+      "fileMatch": [
+        "tsconfig*.json"
+      ],
+      "url": "https://json.schemastore.org/tsconfig.json"
+    },
+    {
+      "fileMatch": [
+        "/*.json"
+      ],
+      "url": "https://json.schemastore.org/json"
+    }
+  ],
+  "json.validate": true,
+  "json.format.enable": true,
+
+  "xml.fileAssociations": ["*.xml", "*.xsd", "*.xsl", "*.xslt"],
+  "xml.client.trace.server": "verbose",
+  "xml.completion.autoCloseTags": true,
+
+  "toml.completion.enable": true,
+  "toml.validate": true,
+
+  "zig.enabled": true,
+    "zig.startUpMessage": true,
+    "zig.path": "zls",
+    "zig.debugLog": false
+}
