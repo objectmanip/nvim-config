@@ -30,7 +30,7 @@ return {
     model = "deepseek-coder-v2",
     url = "http://ollama.remote",
     serve = {
-      on_start = true,
+      on_start = false,
       command = "ollama",
       args = { "serve" },
       stop_command = "pkill",

@@ -3,7 +3,7 @@ vim.g.localleader = " "
 local map = vim.keymap.set
 local map2 = vim.api.nvim_set_keymap
 local autocmd = vim.api.nvim_create_autocmd
-local map_arst = false -- remaps left, right, down, up to a, r, s, t respectively
+local remap_navigation = true -- remaps left, right, down, up to a, r, s, t respectively
 
 --------------------------------------------------
 -- Colemak
@@ -13,7 +13,6 @@ map("i", "<C-h>", "<C-w>")
 map("c", "<C-h>", "<C-w>")
 map("n", '<A-q>', "<cmd>q<cr>")
 map("n", "<leader>n", "<cmd>bnext<cr>", { desc = 'Move to next buffer' })
-map("n", "<leader>dw", "bdw", { desc = 'Delete Word' })
 -- move between windows
 map("n", "<leader>ma", "<C-w>h", { desc = 'Move to Left Window'})
 map("n", "<leader>mr", "<C-w>l", { desc = 'Move to Right Window'})
@@ -54,19 +53,35 @@ map("n", "<leader>uu", "<cmd>undo<cr>", { desc = 'Undo' })
 -- move to beginning and end of line in any mode
 map("i", "<C-a>", "<C-o><S-i>", { desc = 'Beginning of line' })
 map("i", "<C-o>", "<C-o>$", { desc = 'End of line' })
-if map_arst then
-  map("n", "t", "gk")
-  map("n", "s", "gj")
-  map("v", "t", "gk")
-  map("v", "s", "gj")
-  map("n", "a", "<left>")
-  map("n", "r", "<right>")
-  -- map("n", "<C-r>", "<C-right>")
-  -- map("n", "<C-a>", "<C-left>")
-  map("v", "a", "<left>")
-  map("v", "r", "<right>")
-  -- map("v", "<C-r>", "<C-right>")
-  -- map("v", "<C-a>", "<C-left>")
+-- navigation overrides
+
+
+if remap_navigation then
+  local navigation_keys = {
+    ["n"] = {
+      ["a"] = "h", -- left
+      ["s"] = "gj", -- down
+      ["t"] = "gk", -- up
+      ["r"] = "l"  -- right
+    },
+    ["v"] = {
+      ["a"] = "h", -- left
+      ["s"] = "gj", -- down
+      ["t"] = "gk", -- up
+      ["r"] = "l"  -- right
+    }
+  }
+  -- Define a function to set key mappings
+  local function set_navigation_mappings(mappings)
+      for mode, map_table in pairs(mappings) do
+          for lhs, rhs in pairs(map_table) do
+            map(mode, lhs, rhs, { noremap = true, silent = true })
+          end
+      end
+  end
+
+  -- Call the function with your mappings
+  set_navigation_mappings(navigation_keys)
 end
 map("n", "<C-i>", "a")
 map("n", "<C-s>", "30<down>", { noremap = true, silent = true, desc = '30 Lines Down' })

@@ -9,7 +9,6 @@ local autocmd = vim.api.nvim_create_autocmd
 
 map("n", "<leader>ap", "<cmd>Alpha<cr>", { desc = "Open Dashboard" })
 -- Telescope mappings
-
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently used files' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[/] Find existing buffers' })
@@ -19,9 +18,13 @@ vim.keymap.set('n', '<leader>sf', function()
 end, { desc = '[/] Fuzzily search in current buffer' })
 map("n", "<leader>rf", "<cmd>CocRestart<cr><cr>", { desc = 'Reload Coc' })
 map("n", "<leader>ff", function()require'fzf-lua'.files({ cwd=vim.fn.expand('%:p:h') })end)
+-- Ollama
 map("n", "<leader>oc", "<cmd>Ollama Generate_Code<cr>", { desc = 'Ollama generate code'})
 map("n", "<leader>oe", "<cmd>Ollama Explain_Code<cr>", { desc = 'Ollama explain code'})
 map("v", "<leader>oe", "<cmd>Ollama Explain_Code<cr>", { desc = 'Ollama explain code'})
+-- Code Companion
+map("n", "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "CodeCompanionChat" })
+-- ToggleTerm
 map("n", "<leader>/", "<cmd>ToggleTerm dir=%:p:h name='Terminal' direction=float<cr>", { desc = "ToggleTerm"}, { desc = 'Open '})
 map("n", "\\", "<cmd>ToggleTerm dir=%:p:h name='Terminal' direction=float<cr>", { desc = "ToggleTerm"}, { desc = 'Open '})
 map('t', "<esc>", "<cmd>q<cr>")
