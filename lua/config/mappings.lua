@@ -3,7 +3,7 @@ vim.g.localleader = " "
 local map = vim.keymap.set
 local map2 = vim.api.nvim_set_keymap
 local autocmd = vim.api.nvim_create_autocmd
-local map_arst = false -- remaps left, right, down, up to a, r, s, t respectively
+local map_arst = true -- remaps left, right, down, up to a, r, s, t respectively
 
 --------------------------------------------------
 -- Colemak
@@ -37,18 +37,14 @@ local function open_config_subpath(subpath)
     --   vim.notify("Failed to open: " .. spath, vim.log.levels.ERROR)
     -- end
 end
--- Define the keybind that opens the corresponding path based on OS
-map("n", "<leader>nvi", function() open_config_subpath('/init.lua') end)
-map("n", "<leader>nvm", function() open_config_subpath('/lua/config/mappings.lua') end)
-map("n", "<leader>nvc", function() open_config_subpath('/lua/config/') end)
-map("n", "<leader>nva", function() open_config_subpath('/lua/config/artwork.lua') end)
-map("n", "<leader>nvp", function() open_config_subpath('/lua/config/plugin_config.lua') end)
-map("n", "<leader>nvt", function() open_config_subpath('/lua/config/theme.lua') end)
+-- Quick Access to neovim configuration
+map("n", "<leader>vi", function() open_config_subpath('/init.lua') end)
+map("n", "<leader>vm", function() open_config_subpath('/lua/config/mappings.lua') end)
+map("n", "<leader>vc", function() open_config_subpath('/lua/config/') end)
+map("n", "<leader>va", function() open_config_subpath('/lua/config/artwork.lua') end)
+map("n", "<leader>vp", function() open_config_subpath('/lua/plugins/') end)
+map("n", "<leader>vt", function() open_config_subpath('/lua/config/theme.lua') end)
 -- move vertically in lines, even with linebreaks
-map("n", "<up>", "gk")
-map("n", "<down>", "gj")
-map("v", "<up>", "gk")
-map("v", "<down>", "gj")
 map("n", "<leader>rr", "<cmd>redo<cr>", { desc = 'Redo' })
 map("n", "<leader>uu", "<cmd>undo<cr>", { desc = 'Undo' })
 -- move to beginning and end of line in any mode
