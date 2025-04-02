@@ -37,12 +37,12 @@ local function open_config_subpath(subpath)
     -- end
 end
 -- Define the keybind that opens the corresponding path based on OS
-map("n", "<leader>nvi", function() open_config_subpath('/init.lua') end)
-map("n", "<leader>nvm", function() open_config_subpath('/lua/config/mappings.lua') end)
-map("n", "<leader>nvc", function() open_config_subpath('/lua/config/') end)
-map("n", "<leader>nva", function() open_config_subpath('/lua/config/artwork.lua') end)
-map("n", "<leader>nvp", function() open_config_subpath('/lua/config/plugin_config.lua') end)
-map("n", "<leader>nvt", function() open_config_subpath('/lua/config/theme.lua') end)
+map("n", "<leader>vi", function() open_config_subpath('/init.lua') end, { desc="Open init.lua"})
+map("n", "<leader>vm", function() open_config_subpath('/lua/config/mappings.lua') end, { desc="Open mappings.lua" })
+map("n", "<leader>vc", function() open_config_subpath('/lua/config/') end, { desc="Open nvim/lua/config" })
+map("n", "<leader>va", function() open_config_subpath('/lua/config/artwork.lua') end, { desc="Open artwork.lua" })
+map("n", "<leader>vp", function() open_config_subpath('/lua/config/plugin_config.lua') end, { desc="Open plugin_config.lua" })
+map("n", "<leader>vt", function() open_config_subpath('/lua/config/theme.lua') end, { desc="Open theme.lua" })
 -- move vertically in lines, even with linebreaks
 map("n", "<up>", "gk")
 map("n", "<down>", "gj")
@@ -106,7 +106,7 @@ map('n', '<S-Home>', 'v<Home>', { noremap = true, silent = true })
 map('n', '<S-End>', 'v<End>', { noremap = true, silent = true })
 map('i', '<S-Home>', '<Esc>v<Home>', { noremap = true, silent = true })
 map('i', '<S-End>', '<Esc>v<End>', { noremap = true, silent = true })
-map('n', '<leader>f', 'zfip', { desc = 'Folding Paragraph', noremap = true})
+-- map('n', '<leader>f', 'zfip', { desc = 'Folding Paragraph', noremap = true})
 
 -- Terminal keybinds:
 -- Language Specific Automations

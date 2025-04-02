@@ -17,7 +17,7 @@ vim.keymap.set('n', '<leader>sf', function()
   builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({}))
 end, { desc = '[/] Fuzzily search in current buffer' })
 map("n", "<leader>rf", "<cmd>CocRestart<cr><cr>", { desc = 'Reload Coc' })
-map("n", "<leader>ff", function()require'fzf-lua'.files({ cwd=vim.fn.expand('%:p:h') })end)
+map("n", "<leader>f", function()require'fzf-lua'.files({ cwd=vim.fn.expand('%:p:h') })end)
 -- Ollama
 map("n", "<leader>oc", "<cmd>Ollama Generate_Code<cr>", { desc = 'Ollama generate code'})
 map("n", "<leader>oe", "<cmd>Ollama Explain_Code<cr>", { desc = 'Ollama explain code'})
