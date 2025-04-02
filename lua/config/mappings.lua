@@ -13,6 +13,8 @@ map("i", "<C-h>", "<C-w>")
 map("c", "<C-h>", "<C-w>")
 map("n", '<A-q>', "<cmd>q<cr>")
 map("n", "<leader>n", "<cmd>bnext<cr>", { desc = 'Move to next buffer' })
+map("n", "n", "nzz", { noremap=true, silent=true})
+map("n", "N", "Nzz", { noremap=true, silent=true})
 -- move between windows
 map("n", "<leader>ma", "<C-w>h", { desc = 'Move to Left Window'})
 map("n", "<leader>mr", "<C-w>l", { desc = 'Move to Right Window'})
@@ -76,6 +78,7 @@ if remap_navigation then
       for mode, map_table in pairs(mappings) do
           for lhs, rhs in pairs(map_table) do
             map(mode, lhs, rhs, { noremap = true, silent = true })
+            map(mode, rhs, lhs, { noremap = true, silent = true })
           end
       end
   end
