@@ -86,6 +86,8 @@ if remap_navigation then
   -- Call the function with your mappings
   set_navigation_mappings(navigation_keys)
 end
+-- console workspace
+--
 map("n", "<C-i>", "a")
 map("n", "<C-s>", "30<down>", { noremap = true, silent = true, desc = '30 Lines Down' })
 map2("n", "<C-t>", "", { noremap = true })
@@ -127,4 +129,3 @@ autocmd('FileType', {
 map("n", "<leader>qq", ":q!<cr>", { desc = 'Force Close Buffer' })
 map("n", "<leader>wq", ":wq!<cr>", { desc = 'Force Close and Write Buffer'})
 map("n", "<leader>h", "<cmd>noh<cr>", { desc = 'Hide search highlighting' })
-
