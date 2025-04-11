@@ -1,7 +1,6 @@
 name: Update README
 
 on:
-  push:
 
 jobs:
   update-readme:
@@ -18,7 +17,7 @@ jobs:
       #     python -m pip install --upgrade pip
       #     pip install -r requirements.txt
       - name: Run update script
-        run: python3 update_keybinds.py
+        run: python3 update_readme.py
       - name: Commit and push changes
         run: |
           git config --global user.name "gitea-actions[bot]"

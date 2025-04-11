@@ -11,7 +11,7 @@ def make_markdown_table(input_list):
         row_string = "|"
         for header, cell in keybind.items():
             row_string += cell+"|"
-        table_string += row_string.replace('\<', '').replace('\>', ' ')+"\n"
+        table_string += row_string+"\n"
     return table_string
 
 def get_argument(inbetween: tuple, string):
@@ -27,7 +27,10 @@ def format_keybind(line):
             description = get_argument(('\"', '\"'), params.split('desc')[1])
     else:
         description = ''
-    return {'mode': mode.strip('\'').strip('\"'), 'keybind': keybind.strip('\'').strip('\"'), 'function': function.strip('\'').strip('\"'), 'description': description.strip('\'').strip('\"')}
+    return {'mode': fix_string(mode), 'keybind': fix_string(keybind), 'function': fix_string(function), 'description': fix_string(description)}
+
+def fix_string(string):
+    return string.strip().strip('\'').strip('\"').replace('<', '').replace('>', ' ')
 
 for root, _, config_files in os.walk('.'):
     for file in [file for file in config_files if file.endswith('.lua')]:
@@ -46,6 +49,10 @@ with open("README.md", 'r', encoding='utf-8') as readme_file:
     readme = readme_file.read()
 
 readme_without_keybinds = readme.split("# Keybinds")[0]
+try:
+    readme_after_keybinds = '# ' + readme.split('# Keybinds')[1].split('# ')[1]
+except:
+    readme_after_keybinds = ''
 new_readme = readme_without_keybinds + "# Keybinds\n" + keybind_table
 
 with open('README.md', 'w', encoding='utf-8') as readme_file:
