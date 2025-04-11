@@ -20,6 +20,21 @@ map("n", "<leader>ma", "<C-w>h", { desc = 'Move to Left Window'})
 map("n", "<leader>mr", "<C-w>l", { desc = 'Move to Right Window'})
 map("n", "<leader>mt", "<C-w>k", { desc = 'Move to Upper Window'})
 map("n", "<leader>ms", "<C-w>j", { desc = 'Move to Lower Window'})
+map("n", "<leader>lo", "<cmd>only<cr>", { desc = 'close all splits' })
+map("n", "<leader>ca", "<cmd>qa!<cr>", { desc = 'close neovim'})
+
+local function close_terminal_buffers()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf) then
+      local buftype = vim.api.nvim_buf_get_option(buf, 'buftype')
+      if buftype == 'terminal' then
+        vim.api.nvim_buf_delete(buf, { force = true})
+      end
+    end
+  end
+end
+
+map("n", "<leader>tx", close_terminal_buffers, { desc = 'Close all terminal buffers'})
 -- Function to determine the OS and open the respictive path to nvim config
 local function open_config_subpath(subpath)
     local os = vim.trim(vim.fn.system("uname -s"))
@@ -56,7 +71,6 @@ map("n", "<leader>uu", "<cmd>undo<cr>", { desc = 'Undo' })
 map("i", "<C-a>", "<C-o><S-i>", { desc = 'Beginning of line' })
 map("i", "<C-o>", "<C-o>$", { desc = 'End of line' })
 -- navigation overrides
-
 
 if remap_navigation then
   local navigation_keys = {
@@ -130,3 +144,13 @@ autocmd('FileType', {
 map("n", "<leader>qq", ":q!<cr>", { desc = 'Force Close Buffer' })
 map("n", "<leader>wq", ":wq!<cr>", { desc = 'Force Close and Write Buffer'})
 map("n", "<leader>h", "<cmd>noh<cr>", { desc = 'Hide search highlighting' })
+-- workspace
+local function open_workspace()
+  vim.cmd("vsplit")
+  vim.cmd("wincmd l")
+  vim.cmd("term")
+  vim.cmd("wincmd h")
+  vim.cmd("split")
+  vim.cmd("edit ./README.md")
+end
+map("n", "<leader>w", open_workspace)
