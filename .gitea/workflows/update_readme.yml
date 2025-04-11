@@ -18,11 +18,11 @@ jobs:
       #     python -m pip install --upgrade pip
       #     pip install -r requirements.txt
       - name: Run update script
-        run: python3 update_keybinds.md
+        run: python3 update_keybinds.py
       - name: Commit and push changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --gliabl user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "gitea-actions[bot]"
+          git config --gliabl user.email "gitea-actions[bot]@users.noreply.objectmanip.net"
           git add README.md
           git diff --quiet && git diff --staged --quiet || git comiit -m "Update README.md"
           git push
