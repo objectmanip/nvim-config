@@ -86,8 +86,8 @@ def write_keybinds(readme):
                                     continue
                                 try:
                                     keybinds.append({'mode': current_mode,
-                                                     'keybind': line.split('"')[1],
-                                                     'function': line.split('"')[3],
+                                                     'keybind': fix_string(line.split('"')[1]),
+                                                     'function': fix_string(line.split('"')[3]),
                                                      'description': get_keybind_description(line)})
                                     print('Adding keybind switch: ', keybinds[-1])
                                 except IndexError: continue
