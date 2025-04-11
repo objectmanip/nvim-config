@@ -1,6 +1,5 @@
 import os
 
-keybinds = []
 map_definitions = ['map(', 'map2(', 'vim.api.nvim_set_keymap', 'vim.keymap.set']
 
 def make_markdown_table(input_list):
@@ -32,6 +31,18 @@ def format_keybind(line):
 def fix_string(string):
     return string.replace('<', ' \<').replace('>', '\> ').strip().strip('\'').strip('\"').replace('  ', ' ')
 
+
+with open("README.md", 'r', encoding='utf-8') as readme_file:
+    readme = readme_file.read()
+
+readme_without_keybinds = readme.split("# Keybinds")[0]
+try:
+    readme_after_keybinds = '# ' + readme.split('# Keybinds')[1].split('# ')[1]
+except:
+    readme_after_keybinds = ''
+
+new_readme = readme_without_keybinds + "# Keybinds\n"
+
 for root, _, config_files in os.walk('.'):
     for file in [file for file in config_files if file.endswith('.lua')]:
         try:
@@ -41,19 +52,14 @@ for root, _, config_files in os.walk('.'):
             continue
         else:
             mapping_lines = [line for line in contents if any(line.startswith(x) for x in map_definitions)]
-            for line in mapping_lines:
-                keybinds.append(format_keybind(line))
+            if mapping_lines:
+                new_readme += f"## {file}\n"
+                keybinds = []
+                for line in mapping_lines:
+                    keybinds.append(format_keybind(line))
+                new_readme += make_markdown_table(keybinds) + "\n"
 
-keybind_table = make_markdown_table(keybinds)
-with open("README.md", 'r', encoding='utf-8') as readme_file:
-    readme = readme_file.read()
 
-readme_without_keybinds = readme.split("# Keybinds")[0]
-try:
-    readme_after_keybinds = '# ' + readme.split('# Keybinds')[1].split('# ')[1]
-except:
-    readme_after_keybinds = ''
-new_readme = readme_without_keybinds + "# Keybinds\n" + keybind_table
 
 with open('README.md', 'w', encoding='utf-8') as readme_file:
     readme_file.write(new_readme)
