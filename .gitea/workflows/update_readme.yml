@@ -24,7 +24,7 @@ jobs:
           git config --global user.name "gitea-actions[bot]"
           git config --global user.email "gitea-actions[bot]@users.noreply.objectmanip.net"
           git add README.md
-          git diff --quiet && git diff --staged --quiet || git comiit -m "Update README.md"
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update README.md"
           git push
         env:
           GH_TOKEN: ${{ secrets.GITEA_TOKEN }}
