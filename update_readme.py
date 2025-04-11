@@ -30,7 +30,7 @@ def format_keybind(line):
     return {'mode': fix_string(mode), 'keybind': fix_string(keybind), 'function': fix_string(function), 'description': fix_string(description)}
 
 def fix_string(string):
-    return string.strip().strip('\'').strip('\"').replace('<', '\<').replace('>', '\> ')
+    return string.replace('<', ' \<').replace('>', '\> ').strip().strip('\'').strip('\"').replace('  ', ' ')
 
 for root, _, config_files in os.walk('.'):
     for file in [file for file in config_files if file.endswith('.lua')]:
