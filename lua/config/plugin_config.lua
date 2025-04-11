@@ -25,9 +25,17 @@ map("v", "<leader>oe", "<cmd>Ollama Explain_Code<cr>", { desc = 'Ollama explain 
 -- Code Companion
 map("n", "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "CodeCompanionChat" })
 -- ToggleTerm
+local function close_toggleterm()
+  local bufname = vim.api.nvim_buf_get_name(0)
+  if bufname:match("term://.*toggleterm#") then
+    vim.cmd("ToggleTerm")
+  else
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-e>", true, false, true), 't', true)
+  end
+end
 map("n", "<leader>/", "<cmd>ToggleTerm dir=%:p:h name='Terminal' direction=float<cr>", { desc = "ToggleTerm"}, { desc = 'Open '})
 map("n", "\\", "<cmd>ToggleTerm dir=%:p:h name='Terminal' direction=float<cr>", { desc = "ToggleTerm"}, { desc = 'Open '})
-map('t', "<esc>", "<cmd>q<cr>")
+map('t', "<esc>", close_toggleterm)
 map('n', '-', '<cmd>AerialToggle float<CR>', { desc = 'AerialToggle', noremap = true})
 -- map('n', '+', '<cmd>Oil<CR>', { desc = 'Oil Toggle', noremap = true })
 map('n', '<leader>to', '<cmd>Oil --float<CR>', { desc = 'Oil Toggle', noremap = true })
