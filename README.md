@@ -1,5 +1,9 @@
+# About
+Custom neovim config using lazy.vim and coc.
+
 # Keybinds
 ## mappings.lua
+
 |mode|keybind|function|description|
 |---|---|---|---|
 |i| \<C-h\> | \<C-w\> ||
@@ -55,6 +59,7 @@
 |n| \<leader\> w|open_workspace||
 
 ## plugin_config.lua
+
 |mode|keybind|function|description|
 |---|---|---|---|
 |n| \<leader\> ap| \<cmd\> Alpha \<cr\> |Open Dashboard|
