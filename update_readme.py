@@ -95,7 +95,6 @@ def write_keybinds(readme):
                             keybind = format_keybind(line)
                             if keybind is None:
                                 continue
-
                             keybinds.append(keybind)
                     try:
                         new_readme += make_markdown_table(keybinds) + "\n"
