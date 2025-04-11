@@ -3,7 +3,8 @@ local theme = 'poimandres'
 --- ALPHA DASHBOARD ---
 local alpha = require("alpha")
 local startify = require("alpha.themes.startify")
-startify.section.header.val = frieren_braille3
+startify.section.header.val = brailleart[3]
+-- startify.section.header.val = brailleart[math.random(1, table.getn(brailleart))]
 alpha.setup(startify.opts)
 
 if string.find(theme, 'rose-pine') then
@@ -161,6 +162,13 @@ elseif string.find(theme, "kanagawa") then
       },
     })
   end
+elseif theme == "poimandres" then
+  vim.cmd("colorscheme poimandres")
+  require('lualine').setup{
+      options = {
+        theme = 'poimandres',
+      },
+    }
 else
   vim.cmd("colorscheme " .. theme)
 end

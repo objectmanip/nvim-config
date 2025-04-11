@@ -8,7 +8,7 @@ return {
       float_opts={
         border='double',
         width = function(_term)
-          local width = math.ceil(vim.o.columns / 2)
+          local width = math.ceil(vim.o.columns / 1.5)
           _term.float_opts.col = vim.o.columns - width + 10
           return width
         end,

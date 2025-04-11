@@ -99,6 +99,7 @@ map('n', '<leader>sh', ':split<CR><C-w>j', { noremap = true, silent = true, desc
 map('n', '<leader>sr', '<cmd>vertical resize +5<CR>', { desc = 'Increase Window Width'})
 map('n', '<leader>sa', '<cmd>vertical resize -5<CR>', { desc = 'Decrease Window Width'})
 map('n', '<leader>st', '<cmd>resize +5<CR>', { desc = 'Increase Window Height'})
+map('n', '<leader>gf', '<cmd>resize +500<CR>', { desc = 'Increase Window Height'})
 map('n', '<leader>ss', '<cmd>resize -5<CR>', { desc = 'Decrease Window Height'})
 map('n', '<leader>cw', '<C-w>c', { desc = 'Close active window'})
 map('n', '<leader>co', '<C-w>o', { desc = 'Close other windows'})
