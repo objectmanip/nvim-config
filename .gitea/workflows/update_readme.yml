@@ -22,7 +22,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git config --global user.name "gitea-actions[bot]"
-          git config --gliabl user.email "gitea-actions[bot]@users.noreply.objectmanip.net"
+          git config --global user.email "gitea-actions[bot]@users.noreply.objectmanip.net"
           git add README.md
           git diff --quiet && git diff --staged --quiet || git comiit -m "Update README.md"
           git push
