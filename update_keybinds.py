@@ -11,7 +11,7 @@ def make_markdown_table(input_list):
         row_string = "|"
         for header, cell in keybind.items():
             row_string += cell+"|"
-        table_string += row_string+"\n"
+        table_string += row_string.replace('\<', '').replace('\>', ' ')+"\n"
     return table_string
 
 def get_argument(inbetween: tuple, string):
@@ -27,7 +27,7 @@ def format_keybind(line):
             description = get_argument(('\"', '\"'), params.split('desc')[1])
     else:
         description = ''
-    return {'mode': mode, 'keybind': keybind, 'function': function, 'description': description}
+    return {'mode': mode.strip('\'').strip('\"'), 'keybind': keybind.strip('\'').strip('\"'), 'function': function.strip('\'').strip('\"'), 'description': description.strip('\'').strip('\"')}
 
 for root, _, config_files in os.walk('.'):
     for file in [file for file in config_files if file.endswith('.lua')]:
