@@ -107,7 +107,7 @@ def write_keybinds(readme):
 def write_plugins(readme):
     new_readme, readme_after_plugins = empty_section(readme, 'Installed plugins')
     for i, file in enumerate(sorted([ file for file in os.listdir('./lua/plugins') if file.endswith('.lua') and not file.startswith('theme-')])):
-        new_readme += f'- {file.rsplit('.')[0]}\n'
+        new_readme += f'- {file.rsplit(".")[0]}\n'
     new_readme += readme_after_plugins
     return new_readme
 
