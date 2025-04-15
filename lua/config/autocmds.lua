@@ -46,3 +46,5 @@ end
 vim.api.nvim_create_autocmd({"BufWinEnter", "WinEnter", "WinClosed"}, {
   callback = update_winbar,
 })
+
+

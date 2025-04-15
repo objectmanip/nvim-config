@@ -17,7 +17,7 @@ vim.keymap.set('n', '<leader>sf', function()
   builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({}))
 end, { desc = '[/] Fuzzily search in current buffer' })
 map("n", "<leader>rf", "<cmd>CocRestart<cr><cr>", { desc = 'Reload Coc' })
-map("n", "<leader>ff", function()require'fzf-lua'.files({ cwd=vim.fn.expand('%:p:h') })end)
+map("n", "<leader>f", function()require'fzf-lua'.files({ cwd=vim.fn.expand('%:p:h') })end)
 -- Ollama
 map("n", "<leader>oc", "<cmd>Ollama Generate_Code<cr>", { desc = 'Ollama generate code'})
 map("n", "<leader>oe", "<cmd>Ollama Explain_Code<cr>", { desc = 'Ollama explain code'})
@@ -25,14 +25,22 @@ map("v", "<leader>oe", "<cmd>Ollama Explain_Code<cr>", { desc = 'Ollama explain 
 -- Code Companion
 map("n", "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "CodeCompanionChat" })
 -- ToggleTerm
-map("n", "<leader>/", "<cmd>ToggleTerm dir=%:p:h name='Terminal' direction=float<cr>", { desc = "ToggleTerm"}, { desc = 'Open '})
-map("n", "\\", "<cmd>ToggleTerm dir=%:p:h name='Terminal' direction=float<cr>", { desc = "ToggleTerm"}, { desc = 'Open '})
-map('t', "<esc>", "<cmd>q<cr>")
+local function close_toggleterm()
+  local bufname = vim.api.nvim_buf_get_name(0)
+  if bufname:match("term://.*toggleterm#") then
+    vim.cmd("ToggleTerm")
+  else
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-e>", true, false, true), 't', true)
+  end
+end
+map("n", "<leader>/", "<cmd>ToggleTerm dir=%:p:h direction=float<cr>", { desc = "ToggleTerm"}, { desc = 'Open '})
+map("n", "\\", "<cmd>ToggleTerm dir=%:p:h direction=float<cr>", { desc = "ToggleTerm"}, { desc = 'Open '})
+map('t', "<esc>", close_toggleterm)
 map('n', '-', '<cmd>AerialToggle float<CR>', { desc = 'AerialToggle', noremap = true})
 -- map('n', '+', '<cmd>Oil<CR>', { desc = 'Oil Toggle', noremap = true })
 map('n', '<leader>to', '<cmd>Oil --float<CR>', { desc = 'Oil Toggle', noremap = true })
 map('t', '<C-e>', '<C-\\><C-n>', { noremap = true, silent = true })
-map('n', '<leader>cc', '<cmd>bd<cr>', { noremap = true, silent = true, desc = 'Close Buffer' })
+map('n', '<leader>cc', '<cmd>bd<cr><cmd>bnext<cr>', { noremap = true, silent = true, desc = 'Close Buffer' })
 map('n', '<leader>u', '<cmd>Telescope undo<cr>', { noremap = true, silent = true, desc = 'Open Telescope UndoTree' })
 
 -- load the session for the current directory
@@ -329,4 +337,28 @@ require("oil").setup({
 })
 
 
+-- noice
+require("noice").setup({
+  lsp = {
+    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+    override = {
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.stylize_markdown"] = true,
+      ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+    },
+  },
+  -- you can enable a preset for easier configuration
+  presets = {
+    bottom_search = true, -- use a classic bottom cmdline for search
+    command_palette = true, -- position the cmdline and popupmenu together
+    long_message_to_split = true, -- long messages will be sent to a split
+    inc_rename = false, -- enables an input dialog for inc-rename.nvim
+    lsp_doc_border = false, -- add a border to hover docs and signature help
+  },
+})
 
+require("notify").setup({
+  timeout = 3000,
+  max_width = 50,
+
+})

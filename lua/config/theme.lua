@@ -1,92 +1,13 @@
 require("config.artwork")
-local theme = 'kamigawa'
+local theme = 'poimandres'
 --- ALPHA DASHBOARD ---
 local alpha = require("alpha")
 local startify = require("alpha.themes.startify")
-startify.section.header.val = frieren_braille3
+startify.section.header.val = brailleart[3]
+-- startify.section.header.val = brailleart[math.random(1, table.getn(brailleart))]
 alpha.setup(startify.opts)
 
-require('kanagawa-paper').setup({
-  undercurl = true,
-  transparent = false,
-  gutter = false,
-  dimInactive = true, -- disabled when transparent
-  terminalColors = true,
-  commentStyle = { italic = true },
-  functionStyle = { italic = true },
-  keywordStyle = { italic = false, bold = false },
-  statementStyle = { italic = false, bold = false },
-  typeStyle = { italic = false },
-  colors = {
-    theme = {
-      ink = {},
-      canvas = {},
-    },
-    palette = {
-      sumiInk0 = "#000000",
-      fujiWhite = "#FFFFFF",
-    }
-  }, -- override default palette and theme colors
-  color_offset = {
-    canvas = {brightness = 0, saturation = 0},
-  },
-  overrides = function(colors)  -- override highlight groups
-    return {}
-  end
-})
---- KANAGAWA ---
-if theme == 'kamigawa' then
-  -- Default options:
-  require('kanagawa').setup({
-      compile = true,             -- enable compiling the colorscheme
-      undercurl = true,            -- enable undercurls
-      commentStyle = { italic = true },
-      functionStyle = {},
-      keywordStyle = { italic = true },
-      statementStyle = { bold = true },
-      typeStyle = {},
-      transparent = false,         -- do not set background color
-      dimInactive = true,         -- dim inactive window `:h hl-NormalNC`
-      terminalColors = true,       -- define vim.g.terminal_color_{0,17}
-      colors = {                   -- add/modify theme and palette colors
-          palette = {},
-          theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
-      },
-      overrides = function(colors) -- add/modify highlights
-          return {}
-      end,
-      theme = "lotus",              -- Load "wave" theme
-      background = {               -- map the value of 'background' option to a theme
-          dark = "wave",           -- try "dragon" !
-          light = "lotus"
-      },
-    })
-  --- setup must be called before loading
-  vim.cmd("colorscheme kanagawa-wave")
-  -- local kanagawa_paper = require("lualine.themes.kanagawa-wave")
-  -- require("lualine").setup({
-  --   options = {
-  --     theme = kanagawa_paper,
-  --   },
-  -- })
-end
-
-if theme == 'carbonfox' then
-  vim.cmd("colorscheme carbonfox")
-end
-
-if theme == 'kanagawa-paper' then
-  vim.cmd("colorscheme kanagawa-paper-ink")
-  local kanagawa_paper = require("lualine.themes.kanagawa-paper-ink")
-  -- local kanagawa_paper = require("lualine.themes.kanagawa-paper-canvas")
-  require("lualine").setup({
-    options = {
-      theme = kanagawa_paper,
-    },
-  })
-end
-  -------------------------------------------------------
-if theme == 'rose-pine' then
+if string.find(theme, 'rose-pine') then
   require("rose-pine").setup({
       variant = "moon", -- auto, main, moon, or dawn
       dark_variant = "main", -- main, moon, or dawn
@@ -161,9 +82,94 @@ if theme == 'rose-pine' then
           -- end
       end,
   })
-
   vim.cmd("colorscheme rose-pine")
   -- vim.cmd("colorscheme rose-pine-main")
   -- vim.cmd("colorscheme rose-pine-moon")
   -- vim.cmd("colorscheme rose-pine-dawn")
+elseif string.find(theme, "kanagawa") then
+  require('kanagawa-paper').setup({
+    undercurl = true,
+    transparent = false,
+    gutter = false,
+    dimInactive = true, -- disabled when transparent
+    terminalColors = true,
+    commentStyle = { italic = true },
+    functionStyle = { italic = true },
+    keywordStyle = { italic = false, bold = false },
+    statementStyle = { italic = false, bold = false },
+    typeStyle = { italic = false },
+    colors = {
+      theme = {
+        ink = {},
+        canvas = {},
+      },
+      palette = {
+        sumiInk0 = "#000000",
+        fujiWhite = "#FFFFFF",
+      }
+    }, -- override default palette and theme colors
+    color_offset = {
+      canvas = {brightness = 0, saturation = 0},
+    },
+    overrides = function(colors)  -- override highlight groups
+      return {}
+    end
+  })
+  --- KANAGAWA ---
+  if theme == 'kamigawa' then
+    -- Default options:
+    require('kanagawa').setup({
+        compile = true,             -- enable compiling the colorscheme
+        undercurl = true,            -- enable undercurls
+        commentStyle = { italic = true },
+        functionStyle = {},
+        keywordStyle = { italic = true },
+        statementStyle = { bold = true },
+        typeStyle = {},
+        transparent = false,         -- do not set background color
+        dimInactive = true,         -- dim inactive window `:h hl-NormalNC`
+        terminalColors = true,       -- define vim.g.terminal_color_{0,17}
+        colors = {                   -- add/modify theme and palette colors
+            palette = {},
+            theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+        },
+        overrides = function(colors) -- add/modify highlights
+            return {}
+        end,
+        theme = "lotus",              -- Load "wave" theme
+        background = {               -- map the value of 'background' option to a theme
+            dark = "wave",           -- try "dragon" !
+            light = "lotus"
+        },
+      })
+    --- setup must be called before loading
+    vim.cmd("colorscheme kanagawa-wave")
+    -- local kanagawa_paper = require("lualine.themes.kanagawa-wave")
+    -- require("lualine").setup({
+    --   options = {
+    --     theme = kanagawa_paper,
+    --   },
+    -- })
+  end
+
+  if theme == 'kanagawa-paper' then
+    vim.cmd("colorscheme kanagawa-paper-ink")
+    local kanagawa_paper = require("lualine.themes.kanagawa-paper-ink")
+    -- local kanagawa_paper = require("lualine.themes.kanagawa-paper-canvas")
+    require("lualine").setup({
+      options = {
+        theme = kanagawa_paper,
+      },
+    })
+  end
+elseif theme == "poimandres" then
+  vim.cmd("colorscheme poimandres")
+  require('lualine').setup{
+      options = {
+        theme = 'poimandres',
+      },
+    }
+else
+  vim.cmd("colorscheme " .. theme)
 end
+
