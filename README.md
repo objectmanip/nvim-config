@@ -124,13 +124,13 @@ Custom neovim config using lazy.vim and coc.
 |n| \<leader\> oe| \<cmd\> Ollama Explain_Code \<cr\> |Ollama explain code|
 |v| \<leader\> oe| \<cmd\> Ollama Explain_Code \<cr\> |Ollama explain code|
 |n| \<leader\> ac| \<cmd\> CodeCompanionChat Toggle \<cr\> |CodeCompanionChat|
-|n| \<leader\> /| \<cmd\> ToggleTerm dir=%:p:h name='Terminal' direction=float \<cr\> |ToggleTerm|
-|n|\\| \<cmd\> ToggleTerm dir=%:p:h name='Terminal' direction=float \<cr\> |ToggleTerm|
+|n| \<leader\> /| \<cmd\> ToggleTerm dir=%:p:h direction=float \<cr\> |ToggleTerm|
+|n|\\| \<cmd\> ToggleTerm dir=%:p:h direction=float \<cr\> |ToggleTerm|
 |t| \<esc\> |close_toggleterm||
 |n|-| \<cmd\> AerialToggle float \<CR\> |AerialToggle|
 |n| \<leader\> to| \<cmd\> Oil --float \<CR\> |Oil Toggle|
 |t| \<C-e\> | \<C-\\\> \<C-n\> ||
-|n| \<leader\> cc| \<cmd\> bd \<cr\> |Close Buffer|
+|n| \<leader\> cc| \<cmd\> bd \<cr\> \<cmd\> bnext \<cr\> |Close Buffer|
 |n| \<leader\> u| \<cmd\> Telescope undo \<cr\> |Open Telescope UndoTree|
 |n| \<leader\> cd|function() require("persistence").load() end|Load Last Session for Directory|
 |n| \<leader\> ls|function() require("persistence").select() end|Load Session Menu|
