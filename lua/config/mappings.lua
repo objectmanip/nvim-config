@@ -3,7 +3,10 @@ vim.g.localleader = " "
 local map = vim.keymap.set
 local map2 = vim.api.nvim_set_keymap
 local autocmd = vim.api.nvim_create_autocmd
+local usercmd = vim.api.nvim_create_user_command
 local remap_navigation = true -- remaps left, right, down, up to a, r, s, t respectively
+local default_winsize_step = 20
+
 
 --------------------------------------------------
 -- Colemak
@@ -110,11 +113,11 @@ map2("v", "<C-t>", "30<up>", { noremap = true, silent = true, desc = '30 Lines U
 map('n', '<leader>sv', ':vsplit<CR><C-w>l', { noremap = true, silent = true, desc = 'Create window right' })
 map('n', '<leader>sh', ':split<CR><C-w>j', { noremap = true, silent = true, desc = 'Create window below' })
 -- Resize window
-map('n', '<leader>sr', '<cmd>vertical resize +5<CR>', { desc = 'Increase Window Width'})
-map('n', '<leader>sa', '<cmd>vertical resize -5<CR>', { desc = 'Decrease Window Width'})
-map('n', '<leader>st', '<cmd>resize +5<CR>', { desc = 'Increase Window Height'})
-map('n', '<leader>gf', '<cmd>resize +500<CR>', { desc = 'Increase Window Height'})
-map('n', '<leader>ss', '<cmd>resize -5<CR>', { desc = 'Decrease Window Height'})
+map('n', '<leader>sr', function() vim.cmd("vertical resize +" ..default_winsize_step) end, { desc = 'Increase Window Width'})
+map('n', '<leader>sa', function() vim.cmd("vertical resize -" ..default_winsize_step) end, { desc = 'Decrease Window Width'})
+map('n', '<leader>st', function() vim.cmd("resize +" ..default_winsize_step) end, { desc = 'Increase Window Height'})
+map('n', '<leader>ss', function() vim.cmd("resize -" ..default_winsize_step) end, { desc = 'Decrease Window Height'})
+map('n', '<leader>fg', '<cmd>resize +500<CR>', { desc = 'Increase Window Height'})
 map('n', '<leader>cw', '<C-w>c', { desc = 'Close active window'})
 map('n', '<leader>co', '<C-w>o', { desc = 'Close other windows'})
 map('n', '<leader>cu', '<C-w>u', { desc = 'Undo window closing'})
@@ -136,7 +139,7 @@ autocmd('FileType', {
     pattern = 'python',
     callback = function()
         -- Set the keymap only for Python files
-        map('n', '<leader>im', '<C-End>Oif __name__ == "__main__":<CR>', { noremap = true, silent = true })
+        map('n', '<leader>im', '<C-End>if __name__ == "__main__":<CR>', { noremap = true, silent = true })
     end
 })
 
@@ -145,7 +148,7 @@ map("n", "<leader>qq", ":q!<cr>", { desc = 'Force Close Buffer' })
 map("n", "<leader>wq", ":wq!<cr>", { desc = 'Force Close and Write Buffer'})
 map("n", "<leader>h", "<cmd>noh<cr>", { desc = 'Hide search highlighting' })
 -- workspace
-local function open_workspace()
+function open_workspace()
   vim.cmd("vsplit")
   vim.cmd("wincmd l")
   vim.cmd("wincmd h")
@@ -156,3 +159,6 @@ local function open_workspace()
   vim.cmd("wincmd l")
 end
 map("n", "<leader>w", open_workspace)
+
+usercmd("Time", function() print("Time is top right") end, {})
+map("n", "<leader>tn", "<cmd>Time<cr>")

@@ -20,10 +20,12 @@ map("n", "<leader>rf", "<cmd>CocRestart<cr><cr>", { desc = 'Reload Coc' })
 map("n", "<leader>f", function()require'fzf-lua'.files({ cwd=vim.fn.expand('%:p:h') })end)
 -- Ollama
 map("n", "<leader>oc", "<cmd>Ollama Generate_Code<cr>", { desc = 'Ollama generate code'})
+map("n", "<leader>or", "<cmd>Ollama Raw<cr>", { desc = 'Ollama Open Chat Window'})
 map("n", "<leader>oe", "<cmd>Ollama Explain_Code<cr>", { desc = 'Ollama explain code'})
 map("v", "<leader>oe", "<cmd>Ollama Explain_Code<cr>", { desc = 'Ollama explain code'})
+
 -- Code Companion
-map("n", "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "CodeCompanionChat" })
+-- map("n", "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "CodeCompanionChat" })
 -- ToggleTerm
 local function close_toggleterm()
   local bufname = vim.api.nvim_buf_get_name(0)
