@@ -1,11 +1,49 @@
 require("config.artwork")
 local theme = 'poimandres'
+-----------------------------------------------------------------------------
 --- ALPHA DASHBOARD ---
+
 local alpha = require("alpha")
-local startify = require("alpha.themes.startify")
-startify.section.header.val = brailleart[3]
--- startify.section.header.val = brailleart[math.random(1, table.getn(brailleart))]
-alpha.setup(startify.opts)
+local dashboard = require("alpha.themes.dashboard")
+dashboard.section.header.val = brailleart[math.random(1, table.getn(brailleart))]
+-- Static buttons
+local static_buttons = {
+  dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
+  dashboard.button("r", "  Recent", ":Telescope oldfiles<CR>"),
+  dashboard.button("q", "  Quit", ":qa<CR>"),
+}
+-- Add 5 most recent files below the static ones
+local function recent_files(n)
+  local oldfiles = vim.v.oldfiles
+  local buttons = {}
+  local count = 0
+  for _, file in ipairs(oldfiles) do
+    if vim.fn.filereadable(file) == 1 and not file:match("^term://") then
+      count = count + 1
+      local shortname = vim.fn.fnamemodify(file, ":~:.")
+      table.insert(buttons, dashboard.button(" " .. tostring(count), shortname, ":e " .. vim.fn.fnameescape(file) .. " <CR>"))
+      if count >= n then break end
+    end
+  end
+  return buttons
+end
+
+-- Combine static buttons with recent files
+dashboard.section.buttons.val = vim.list_extend(static_buttons, recent_files(10))
+
+-- dashboard.section.footer.val = { "neovim loaded." }
+dashboard.config.layout = {
+  { type = "padding", val = 10},
+  dashboard.section.header,
+  { type = "padding", val = 2},
+  dashboard.section.buttons,
+  { type = "padding", val = 1},
+  dashboard.section.footer
+}
+dashboard.config.opts.noautocmd = true
+
+alpha.setup(dashboard.config)
+-----------------------------------------------------------------------------
 
 if string.find(theme, 'rose-pine') then
   require("rose-pine").setup({

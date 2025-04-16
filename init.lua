@@ -14,3 +14,12 @@ vim.api.nvim_create_user_command(
   end,
   {}
 )
+
+vim.api.nvim_create_user_command(
+  "WS",
+  function()
+    open_workspace()
+  end,
+  {}
+)
+
