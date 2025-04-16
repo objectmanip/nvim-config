@@ -1,21 +1,18 @@
 # About
 Custom neovim config using lazy.vim and coc.
 # Installed plugins
-- Sniprun
 - aerial
 - alpha
 - autopairs
 - barbar
 - cmp-ai
 - coc
-- codecompanion
 - comment
 - edgy
 - feline
 - fzf
 - harpoon
 - indent-blankline
-- iron
 - limelight
 - lualine
 - luasnip
@@ -90,11 +87,11 @@ Custom neovim config using lazy.vim and coc.
 |v| \<C-t\> |30 \<up\> |30 Lines Up|
 |n| \<leader\> sv|:vsplit \<CR\> \<C-w\> l|Create window right|
 |n| \<leader\> sh|:split \<CR\> \<C-w\> j|Create window below|
-|n| \<leader\> sr| \<cmd\> vertical resize +5 \<CR\> |Increase Window Width|
-|n| \<leader\> sa| \<cmd\> vertical resize -5 \<CR\> |Decrease Window Width|
-|n| \<leader\> st| \<cmd\> resize +5 \<CR\> |Increase Window Height|
-|n| \<leader\> gf| \<cmd\> resize +500 \<CR\> |Increase Window Height|
-|n| \<leader\> ss| \<cmd\> resize -5 \<CR\> |Decrease Window Height|
+|n| \<leader\> sr|function() vim.cmd("vertical resize +" ..default_winsize_step) end|Increase Window Width|
+|n| \<leader\> sa|function() vim.cmd("vertical resize -" ..default_winsize_step) end|Decrease Window Width|
+|n| \<leader\> st|function() vim.cmd("resize +" ..default_winsize_step) end|Increase Window Height|
+|n| \<leader\> ss|function() vim.cmd("resize -" ..default_winsize_step) end|Decrease Window Height|
+|n| \<leader\> fg| \<cmd\> resize +500 \<CR\> |Increase Window Height|
 |n| \<leader\> cw| \<C-w\> c|Close active window|
 |n| \<leader\> co| \<C-w\> o|Close other windows|
 |n| \<leader\> cu| \<C-w\> u|Undo window closing|
@@ -104,11 +101,12 @@ Custom neovim config using lazy.vim and coc.
 |n| \<S-End\> |v \<End\> ||
 |i| \<S-Home\> | \<Esc\> v \<Home\> ||
 |i| \<S-End\> | \<Esc\> v \<End\> ||
-|n| \<leader\> im| \<C-End\> Oif __name__ == "__main__": \<CR\> ||
+|n| \<leader\> im| \<C-End\> if __name__ == "__main__": \<CR\> ||
 |n| \<leader\> qq|:q! \<cr\> |Force Close Buffer|
 |n| \<leader\> wq|:wq! \<cr\> |Force Close and Write Buffer|
 |n| \<leader\> h| \<cmd\> noh \<cr\> |Hide search highlighting|
 |n| \<leader\> w|open_workspace||
+|n| \<leader\> tn| \<cmd\> Time \<cr\> ||
 
 ## plugin_config.lua
 
@@ -121,9 +119,9 @@ Custom neovim config using lazy.vim and coc.
 |n| \<leader\> rf| \<cmd\> CocRestart \<cr\> \<cr\> |Reload Coc|
 |n| \<leader\> f|function()require'fzf-lua'.files({ cwd=vim.fn.expand('%:p:h') })end||
 |n| \<leader\> oc| \<cmd\> Ollama Generate_Code \<cr\> |Ollama generate code|
+|n| \<leader\> or| \<cmd\> Ollama Raw \<cr\> |Ollama Open Chat Window|
 |n| \<leader\> oe| \<cmd\> Ollama Explain_Code \<cr\> |Ollama explain code|
 |v| \<leader\> oe| \<cmd\> Ollama Explain_Code \<cr\> |Ollama explain code|
-|n| \<leader\> ac| \<cmd\> CodeCompanionChat Toggle \<cr\> |CodeCompanionChat|
 |n| \<leader\> /| \<cmd\> ToggleTerm dir=%:p:h direction=float \<cr\> |ToggleTerm|
 |n|\\| \<cmd\> ToggleTerm dir=%:p:h direction=float \<cr\> |ToggleTerm|
 |t| \<esc\> |close_toggleterm||
