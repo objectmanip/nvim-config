@@ -7,7 +7,6 @@ local usercmd = vim.api.nvim_create_user_command
 local remap_navigation = true -- remaps left, right, down, up to a, r, s, t respectively
 local default_winsize_step = 20
 
-
 --------------------------------------------------
 -- Colemak
 --------------------------------------------------
@@ -26,6 +25,29 @@ map("n", "<leader>ms", "<C-w>j", { desc = 'Move to Lower Window'})
 map("n", "<leader>lo", "<cmd>only<cr>", { desc = 'close all splits' })
 map("n", "<leader>ca", "<cmd>qa!<cr>", { desc = 'close neovim'})
 map("n", "<leader>sd", "<cmd>w<cr>", { desc = "save document" })
+
+-- Toggle text
+map("n", "<leader>tt", function()
+  local bool_map = {
+    ["true"] = "false",
+    ["false"] = "true",
+    ["yes"] = "no",
+    ["no"] = "yes",
+    ["on"] = "off",
+    ["off"] = "on"
+  }
+  local word = vim.fn.expand("<cword>")
+  local lower_word = word:lower()
+  local replacement = bool_map[lower_word]
+  if replacement then
+    -- Preserve the original case if needed
+    if word:sub(1,1):upper() == word:sub(1,1) then
+      replacement = replacement:gsub("^%l", string.upper)
+    end
+    vim.cmd("normal! ciw" .. replacement)
+  end
+end, { desc = "Toggle Boolean" }
+)
 
 local function close_terminal_buffers()
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
@@ -53,9 +75,6 @@ local function open_config_subpath(subpath)
         spath = home .. "/AppData/Local/nvim" .. subpath
     end
     local success, _ = pcall(vim.cmd, "e " .. vim.fn.fnameescape(spath))
-    -- if not sucess then
-    --   vim.notify("Failed to open: " .. spath, vim.log.levels.ERROR)
-    -- end
 end
 -- Define the keybind that opens the corresponding path based on OS
 map("n", "<leader>vi", function() open_config_subpath('/init.lua') end, { desc="Open init.lua"})

@@ -4,7 +4,7 @@ Custom neovim config using lazy.vim and coc.
 
 |plugin|description|plugin|description|
 |---|---|---|---|
-|aerial|Context-aware documentation assistant|alpha|Advanced Command Line Interface|
+|aerial|File Structure Navigation|alpha|Advanced Command Line Interface|
 |autopairs|Automatic pair completion|barbar|Minimalistic code completion|
 |cmp-ai|Code completion with AI assistance|coc|Language Server Integration|
 |comment|Code Comment Helper Tool|edgy|Configurable mouse integration|
@@ -14,8 +14,8 @@ Custom neovim config using lazy.vim and coc.
 |magma|Modern Vim Emulator|markview|Contextual Bookmark Manager|
 |modes|Configurable Text Editor Modes|noice|Dynamic UI Notifications|
 |nvim-cmp|Autocomplete Code Completion|nvim-ts-autotag|Automatic HTML Tag Completion|
-|obsidian|Note taking integration|oil|Lisp like code editor|
-|ollama|Intelligent Code Completion|persistence|Persistent Session Management|
+|obsidian|Note taking integration|oil|Fast File Navigation|
+|ollama|LLM & Code Completion|persistence|Persistent Session Management|
 |plenary|Configuration File Management|project-cli-commands|Command line interface integration|
 |telescope-oil|Interactive fuzzy finder|telescope-undo|Undo with Preview|
 |telescope|Fuzzy file searching tool|toggleterm-manager|Manage Multiple Terminals|
