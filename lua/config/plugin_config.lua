@@ -24,12 +24,19 @@ map("n", "<leader>or", "<cmd>Ollama Raw<cr>", { desc = 'Ollama Open Chat Window'
 map("n", "<leader>oe", "<cmd>Ollama Explain_Code<cr>", { desc = 'Ollama explain code'})
 map("v", "<leader>oe", "<cmd>Ollama Explain_Code<cr>", { desc = 'Ollama explain code'})
 
+-- ########################################################################
+
 -- Code Companion
 -- map("n", "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "CodeCompanionChat" })
+
+-- ########################################################################
+
 -- ToggleTerm
 local function close_toggleterm()
   local bufname = vim.api.nvim_buf_get_name(0)
   if bufname:match("term://.*toggleterm#") then
+    vim.cmd("ToggleTerm")
+  elseif bufname:match("*toggleterm#") then
     vim.cmd("ToggleTerm")
   else
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-e>", true, false, true), 't', true)
@@ -45,6 +52,9 @@ map('t', '<C-e>', '<C-\\><C-n>', { noremap = true, silent = true })
 map('n', '<leader>cc', '<cmd>bd<cr><cmd>bnext<cr>', { noremap = true, silent = true, desc = 'Close Buffer' })
 map('n', '<leader>u', '<cmd>Telescope undo<cr>', { noremap = true, silent = true, desc = 'Open Telescope UndoTree' })
 
+
+-- ########################################################################
+-- Persictence
 -- load the session for the current directory
 map("n", "<leader>cd", function() require("persistence").load() end, { desc = 'Load Last Session for Directory' })
 -- select a session to load
@@ -56,6 +66,8 @@ map("n", "<leader>rs", function() require("persistence").load({ last = true }) e
 map("n", "<leader>qd", function() require("persistence").stop() end, { desc = 'Stop Persistence' })
 -- Ensure you have Coc installed with nvim-coc extension
 vim.api.nvim_set_keymap('n', '<leader>gd', ':CocCommand explorer.showDefinition<CR>', { noremap = true, silent = true })
+
+-- ########################################################################
 -- HARPOON
 local harpoon = require("harpoon")
 -- REQUIRED
@@ -96,6 +108,8 @@ end
 vim.keymap.set("n", "<C-h>", function() toggle_telescope(harpoon:list()) end,
     { desc = "Open harpoon window" })
 
+
+-- ########################################################################
 -- AERIAL
 require("telescope").setup({
   extensions = {
@@ -114,6 +128,8 @@ require("telescope").setup({
   },
 })
 
+
+-- ########################################################################
 local builtin = require("statuscol.builtin")
 local cfg = {
   setopt = true,         -- Whether to set the 'statuscolumn' option, may be set to false for those who
@@ -338,7 +354,6 @@ require("oil").setup({
   },
 })
 
-
 -- noice
 require("noice").setup({
   lsp = {
@@ -362,5 +377,4 @@ require("noice").setup({
 require("notify").setup({
   timeout = 3000,
   max_width = 50,
-
 })

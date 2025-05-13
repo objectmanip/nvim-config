@@ -25,6 +25,7 @@ map("n", "<leader>mt", "<C-w>k", { desc = 'Move to Upper Window'})
 map("n", "<leader>ms", "<C-w>j", { desc = 'Move to Lower Window'})
 map("n", "<leader>lo", "<cmd>only<cr>", { desc = 'close all splits' })
 map("n", "<leader>ca", "<cmd>qa!<cr>", { desc = 'close neovim'})
+map("n", "<leader>sd", "<cmd>w<cr>", { desc = "save document" })
 
 local function close_terminal_buffers()
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do

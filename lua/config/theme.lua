@@ -1,36 +1,36 @@
 require("config.artwork")
 local theme = 'poimandres'
------------------------------------------------------------------------------
+-- ########################################################################
 --- ALPHA DASHBOARD ---
 
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
-dashboard.section.header.val = brailleart[math.random(1, table.getn(brailleart))]
+-- dashboard.section.header.val = brailleart[math.random(1, table.getn(brailleart))]
+dashboard.section.header.val = brailleart[2]
 -- Static buttons
-local static_buttons = {
+dashboard.section.buttons.val = {
+  dashboard.button("e", "  New File", ":ene <BAR> startinsert<CR>"),
   dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
   dashboard.button("r", "  Recent", ":Telescope oldfiles<CR>"),
   dashboard.button("q", "  Quit", ":qa<CR>"),
 }
--- Add 5 most recent files below the static ones
-local function recent_files(n)
-  local oldfiles = vim.v.oldfiles
-  local buttons = {}
-  local count = 0
-  for _, file in ipairs(oldfiles) do
-    if vim.fn.filereadable(file) == 1 and not file:match("^term://") then
-      count = count + 1
-      local shortname = vim.fn.fnamemodify(file, ":~:.")
-      table.insert(buttons, dashboard.button(" " .. tostring(count), shortname, ":e " .. vim.fn.fnameescape(file) .. " <CR>"))
-      if count >= n then break end
-    end
+-- Add top 7 recent files (manually via vim.v.oldfiles)
+local recent_files = {}
+for i, path in ipairs(vim.v.oldfiles) do
+  if #recent_files >= 7 then break end
+  if vim.fn.filereadable(path) == 1 then
+    table.insert(recent_files,
+      dashboard.button(tostring(i + 3), "  " .. vim.fn.fnamemodify(path, ":~"),
+        "<cmd>e " .. path .. "<CR>")
+    )
   end
-  return buttons
 end
-
--- Combine static buttons with recent files
-dashboard.section.buttons.val = vim.list_extend(static_buttons, recent_files(10))
-
+-- Add to buttons list
+for _, btn in ipairs(recent_files) do
+  table.insert(dashboard.section.buttons.val, btn)
+end
+-- Footer (optional)
+dashboard.section.footer.val = "🧘 Happy Hacking, Florian"
 -- dashboard.section.footer.val = { "neovim loaded." }
 dashboard.config.layout = {
   { type = "padding", val = 10},
@@ -43,8 +43,8 @@ dashboard.config.layout = {
 dashboard.config.opts.noautocmd = true
 
 alpha.setup(dashboard.config)
------------------------------------------------------------------------------
-
+-- ########################################################################
+-- THEMES
 if string.find(theme, 'rose-pine') then
   require("rose-pine").setup({
       variant = "moon", -- auto, main, moon, or dawn
@@ -211,3 +211,4 @@ else
   vim.cmd("colorscheme " .. theme)
 end
 
+-- ########################################################################
