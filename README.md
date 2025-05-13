@@ -44,6 +44,13 @@ Custom neovim config using lazy.vim and coc.
 |n| \<leader\> lo| \<cmd\> only \<cr\> |close all splits|
 |n| \<leader\> ca| \<cmd\> qa! \<cr\> |close neovim|
 |n| \<leader\> sd| \<cmd\> w \<cr\> |save document|
+|n| \<leader\> tt|function(||
+|n|true|false||
+|n|false|true||
+|n|yes|no||
+|n|no|yes||
+|n|on|off||
+|n|off|on||
 |n| \<leader\> tx|close_terminal_buffers|Close all terminal buffers|
 |n| \<leader\> vi|function() open_config_subpath('/init.lua') end|Open init.lua|
 |n| \<leader\> vm|function() open_config_subpath('/lua/config/mappings.lua') end|Open mappings.lua|
@@ -149,6 +156,7 @@ Custom neovim config using lazy.vim and coc.
 |n|g\\|actions.toggle_trash||
 |n|\<esc\>|actions.close||
 
+## nvim-cmp.lua
 ## nvim-ts-autotag.lua
 ## oil.lua
 
@@ -172,6 +180,7 @@ Custom neovim config using lazy.vim and coc.
 |n|g\\|actions.toggle_trash||
 
 ## project-cli-commands.lua
+
 # Installed plugins
 
 |plugin|description|plugin|description|
