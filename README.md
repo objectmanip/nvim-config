@@ -1,31 +1,38 @@
-<<<<<<< HEAD
-=======
 # About
 Custom neovim config using lazy.vim and coc.
 # Installed plugins
 
 |plugin|description|plugin|description|
 |---|---|---|---|
-|aerial|File Structure Navigation|alpha|Advanced Command Line Interface|
-|autopairs|Automatic pair completion|barbar|Minimalistic code completion|
-|cmp-ai|Code completion with AI assistance|coc|Language Server Integration|
-|comment|Code Comment Helper Tool|edgy|Configurable mouse integration|
-|fzf|Fuzzy File Search Tool|harpoon|Link Based Project Manager|
-|indent-blankline|Automatic indentation lines|limelight|Code line highlighting tool|
-|lualine|Customizable Statusline Manager|luasnip|Lua snippet completion tool|
-|magma|Modern Vim Emulator|markview|Contextual Bookmark Manager|
-|modes|Configurable Text Editor Modes|noice|Dynamic UI Notifications|
-|nvim-cmp|Autocomplete Code Completion|nvim-ts-autotag|Automatic HTML Tag Completion|
-|obsidian|Note taking integration|oil|Fast File Navigation|
-|ollama|LLM & Code Completion|persistence|Persistent Session Management|
-|plenary|Configuration File Management|project-cli-commands|Command line interface integration|
-|telescope-oil|Interactive fuzzy finder|telescope-undo|Undo with Preview|
-|telescope|Fuzzy file searching tool|toggleterm-manager|Manage Multiple Terminals|
-|toggleterm|Terminal Tab Toggle|treesitter|Syntax Tree Parser|
-|trouble|Error Management Tool|ufo|Powerful code navigation|
-|web-devicons|Icon Font Manager|which-key|Fuzzy key binding lookup|
+|aerial|Context aware completion|alpha|Extensive UI Customization Options|
+|autopairs|Automatic pair completion|barbar|Rustic minimal line editor|
+|cmp-ai|AI Code Completion|coc|Code Completion System|
+|comment|Comment highlighting tool|edgy|Lua based theme|
+|fzf|powerful fuzzy searching tool|harpoon|Bookmarking system manager|
+|indent-blankline|Automatic line blanking|limelight|Syntax Highlighting Enhancer|
+|lualine|Beautiful Status Line|luasnip|Lua Snippet Manager|
+|magma|Config File Manager|markview|Enhanced file line markers|
+|modes|Configurable text editor modes|noice|Plugin with live updates|
+|nvim-cmp|Context aware completion|nvim-ts-autotag|Autocomplete HTML tags|
+|obsidian|Note taking integration|oil|Plugin for code formatting|
+|ollama|Automated Vim configuration manager|persistence|Automatic File Saving|
+|plenary|Lua based config manager|project-cli-commands|Command line interface|
+|telescope-oil|Intelligent file search tool|telescope-undo|Undo History Viewer|
+|telescope|Fuzzy file finder|toggleterm-manager|Automatic Terminal Manager|
+|toggleterm|Dynamic Floating Windows|treesitter|Syntax Tree Parser|
+|trouble|Automated Error Reporting Tool|ufo|Powerful file navigation|
+|web-devicons|Integrates Font Icons|which-key|Fuzzy Keybinding Lookup|
 
->>>>>>> dev
+# Installed themes
+
+|theme|theme|
+|---|---|
+|carbonfox|darkvoid|
+|flow|github|
+|kanagawa-paper|kanagawa|
+|melange|moonfly|
+|ohlucy|poimandres|
+|rosa-pine|sonokai|
 # Keybinds
 ## mappings.lua
 
@@ -51,6 +58,10 @@ Custom neovim config using lazy.vim and coc.
 |n|no|yes||
 |n|on|off||
 |n|off|on||
+|n|all|any||
+|n|any|all||
+|n|is|is not||
+|n|not|||
 |n| \<leader\> tx|close_terminal_buffers|Close all terminal buffers|
 |n| \<leader\> vi|function() open_config_subpath('/init.lua') end|Open init.lua|
 |n| \<leader\> vm|function() open_config_subpath('/lua/config/mappings.lua') end|Open mappings.lua|
@@ -156,7 +167,6 @@ Custom neovim config using lazy.vim and coc.
 |n|g\\|actions.toggle_trash||
 |n|\<esc\>|actions.close||
 
-## nvim-cmp.lua
 ## nvim-ts-autotag.lua
 ## oil.lua
 
@@ -180,36 +190,3 @@ Custom neovim config using lazy.vim and coc.
 |n|g\\|actions.toggle_trash||
 
 ## project-cli-commands.lua
-
-# Installed plugins
-
-|plugin|description|plugin|description|
-|---|---|---|---|
-|aerial|Context aware completion|alpha|Extensive UI Customization Options|
-|autopairs|Automatic pair completion|barbar|Rustic minimal line editor|
-|cmp-ai|AI Code Completion|coc|Code Completion System|
-|comment|Comment highlighting tool|edgy|Lua based theme|
-|fzf|powerful fuzzy searching tool|harpoon|Bookmarking system manager|
-|indent-blankline|Automatic line blanking|limelight|Syntax Highlighting Enhancer|
-|lualine|Beautiful Status Line|luasnip|Lua Snippet Manager|
-|magma|Config File Manager|markview|Enhanced file line markers|
-|modes|Configurable text editor modes|noice|Plugin with live updates|
-|nvim-cmp|Context aware completion|nvim-ts-autotag|Autocomplete HTML tags|
-|obsidian|Note taking integration|oil|Plugin for code formatting|
-|ollama|Automated Vim configuration manager|persistence|Automatic File Saving|
-|plenary|Lua based config manager|project-cli-commands|Command line interface|
-|telescope-oil|Intelligent file search tool|telescope-undo|Undo History Viewer|
-|telescope|Fuzzy file finder|toggleterm-manager|Automatic Terminal Manager|
-|toggleterm|Dynamic Floating Windows|treesitter|Syntax Tree Parser|
-|trouble|Automated Error Reporting Tool|ufo|Powerful file navigation|
-|web-devicons|Integrates Font Icons|which-key|Fuzzy Keybinding Lookup|
-# Installed themes
-
-|theme|theme|
-|---|---|
-|carbonfox|darkvoid|
-|flow|github|
-|kanagawa-paper|kanagawa|
-|melange|moonfly|
-|ohlucy|poimandres|
-|rosa-pine|sonokai|

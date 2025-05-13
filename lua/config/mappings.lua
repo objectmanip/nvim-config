@@ -34,7 +34,11 @@ map("n", "<leader>tt", function()
     ["yes"] = "no",
     ["no"] = "yes",
     ["on"] = "off",
-    ["off"] = "on"
+    ["off"] = "on",
+    ["all"] = "any",
+    ["any"] = "all",
+    ["is"] = "is not",
+    ["not"] = ""
   }
   local word = vim.fn.expand("<cword>")
   local lower_word = word:lower()

@@ -158,9 +158,10 @@ def write_plugins(readme, columns: int = 2):
 with open("README.md", 'r', encoding='utf-8') as readme_file:
     readme = readme_file.read()
 
-new_readme_local = write_keybinds(readme)
+new_readme_local = readme
 new_readme_local = write_plugins(new_readme_local)
 new_readme_local = write_themes(new_readme_local)
+new_readme_local = write_keybinds(new_readme_local)
 
 with open('README.md', 'w', encoding='utf-8') as readme_file:
     readme_file.write(new_readme_local)

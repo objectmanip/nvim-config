@@ -1,8 +1,6 @@
 require("config.artwork")
 local theme = 'oh-lucy-evening'
--- ########################################################################
 --- ALPHA DASHBOARD ---
-
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 -- dashboard.section.header.val = brailleart[math.random(1, table.getn(brailleart))]
