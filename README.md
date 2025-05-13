@@ -1,45 +1,27 @@
 # About
 Custom neovim config using lazy.vim and coc.
 # Installed plugins
-- aerial
-- alpha
-- autopairs
-- barbar
-- cmp-ai
-- coc
-- comment
-- edgy
-- feline
-- fzf
-- harpoon
-- indent-blankline
-- limelight
-- lualine
-- luasnip
-- magma
-- markview
-- modes
-- neotree
-- noice
-- nvim-cmp
-- nvim-ts-autotag
-- obsidian
-- oil
-- ollama
-- persistence
-- plenary
-- project-cli-commands
-- quicker
-- telescope-oil
-- telescope-undo
-- telescope
-- toggleterm-manager
-- toggleterm
-- treesitter
-- trouble
-- ufo
-- web-devicons
-- which-key
+
+|plugin|description|plugin|description|
+|---|---|---|---|
+|aerial|Context-aware documentation assistant|alpha|Advanced Command Line Interface|
+|autopairs|Automatic pair completion|barbar|Minimalistic code completion|
+|cmp-ai|Code completion with AI assistance|coc|Language Server Integration|
+|comment|Code Comment Helper Tool|edgy|Configurable mouse integration|
+|fzf|Fuzzy File Search Tool|harpoon|Link Based Project Manager|
+|indent-blankline|Automatic indentation lines|limelight|Code line highlighting tool|
+|lualine|Customizable Statusline Manager|luasnip|Lua snippet completion tool|
+|magma|Modern Vim Emulator|markview|Contextual Bookmark Manager|
+|modes|Configurable Text Editor Modes|noice|Dynamic UI Notifications|
+|nvim-cmp|Autocomplete Code Completion|nvim-ts-autotag|Automatic HTML Tag Completion|
+|obsidian|Note taking integration|oil|Lisp like code editor|
+|ollama|Intelligent Code Completion|persistence|Persistent Session Management|
+|plenary|Configuration File Management|project-cli-commands|Command line interface integration|
+|telescope-oil|Interactive fuzzy finder|telescope-undo|Undo with Preview|
+|telescope|Fuzzy file searching tool|toggleterm-manager|Manage Multiple Terminals|
+|toggleterm|Terminal Tab Toggle|treesitter|Syntax Tree Parser|
+|trouble|Error Management Tool|ufo|Powerful code navigation|
+|web-devicons|Icon Font Manager|which-key|Fuzzy key binding lookup|
 
 # Keybinds
 ## mappings.lua
@@ -58,6 +40,7 @@ Custom neovim config using lazy.vim and coc.
 |n| \<leader\> ms| \<C-w\> j|Move to Lower Window|
 |n| \<leader\> lo| \<cmd\> only \<cr\> |close all splits|
 |n| \<leader\> ca| \<cmd\> qa! \<cr\> |close neovim|
+|n| \<leader\> sd| \<cmd\> w \<cr\> |save document|
 |n| \<leader\> tx|close_terminal_buffers|Close all terminal buffers|
 |n| \<leader\> vi|function() open_config_subpath('/init.lua') end|Open init.lua|
 |n| \<leader\> vm|function() open_config_subpath('/lua/config/mappings.lua') end|Open mappings.lua|
@@ -163,7 +146,6 @@ Custom neovim config using lazy.vim and coc.
 |n|g\\|actions.toggle_trash||
 |n|\<esc\>|actions.close||
 
-## nvim-cmp.lua
 ## nvim-ts-autotag.lua
 ## oil.lua
 
