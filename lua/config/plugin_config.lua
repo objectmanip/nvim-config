@@ -36,7 +36,7 @@ local function close_toggleterm()
   local bufname = vim.api.nvim_buf_get_name(0)
   if bufname:match("term://.*toggleterm#") then
     vim.cmd("ToggleTerm")
-  elseif bufname:match("*toggleterm#") then
+  elseif bufname:match("term://*toggleterm::#") then
     vim.cmd("ToggleTerm")
   else
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-e>", true, false, true), 't', true)

@@ -1,5 +1,5 @@
 require("config.artwork")
-local theme = 'oh-lucy'
+local theme = 'oh-lucy-evening'
 -- ########################################################################
 --- ALPHA DASHBOARD ---
 
@@ -30,7 +30,7 @@ for _, btn in ipairs(recent_files) do
   table.insert(dashboard.section.buttons.val, btn)
 end
 -- Footer (optional)
-dashboard.section.footer.val = "🧘 Happy Hacking, Florian"
+dashboard.section.footer.val = "🧘 Happy Coding"
 -- dashboard.section.footer.val = { "neovim loaded." }
 dashboard.config.layout = {
   { type = "padding", val = 10},
