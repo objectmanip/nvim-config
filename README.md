@@ -167,6 +167,7 @@ Custom neovim config using lazy.vim and coc.
 |n|g\\|actions.toggle_trash||
 |n|\<esc\>|actions.close||
 
+## nvim-cmp.lua
 ## nvim-ts-autotag.lua
 ## oil.lua
 
