@@ -27,6 +27,29 @@ map("n", "<leader>lo", "<cmd>only<cr>", { desc = 'close all splits' })
 map("n", "<leader>ca", "<cmd>qa!<cr>", { desc = 'close neovim'})
 map("n", "<leader>sd", "<cmd>w<cr>", { desc = "save document" })
 
+vim.keymap.set("n", "<leader>tt", function()
+  local bool_map = {
+    ["true"] = "false",
+    ["false"] = "true",
+    ["yes"] = "no",
+    ["no"] = "yes",
+    ["on"] = "off",
+    ["off"] = "on"
+  }
+
+  local word = vim.fn.expand("<cword>")
+  local lower_word = word:lower()
+  local replacement = bool_map[lower_word]
+
+  if replacement then
+    -- Preserve the original case if needed
+    if word:sub(1,1):upper() == word:sub(1,1) then
+      replacement = replacement:gsub("^%l", string.upper)
+    end
+    vim.cmd("normal! ciw" .. replacement)
+  end
+end, { desc = "Toggle Boolean (Case-Insensitive)" })
+
 local function close_terminal_buffers()
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     if vim.api.nvim_buf_is_loaded(buf) then

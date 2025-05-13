@@ -1,5 +1,5 @@
 require("config.artwork")
-local theme = 'poimandres'
+local theme = 'oh-lucy'
 -- ########################################################################
 --- ALPHA DASHBOARD ---
 

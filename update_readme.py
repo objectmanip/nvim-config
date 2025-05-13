@@ -106,6 +106,18 @@ def write_keybinds(readme):
     new_readme += readme_after_keybinds
     return new_readme
 
+def write_themes(readme, columns: int = 2):
+    new_readme, readme_after_plugins = empty_section(readme, 'Installed themes')
+    plugin_list = [file.rsplit(".", 1)[0].replace("theme-", "", 1) for file in os.listdir('./lua/plugins') if file.endswith('.lua') and file.startswith('theme-')]
+    print(f"Found {len(plugin_list)} plugins")
+    plugin_table = "\n" + "|theme" *columns + "|\n" + "|---"*columns + "|\n"
+    for i in range(0, math.ceil(len(plugin_list) / columns)):
+        plugin_sublist = plugin_list[i*columns:(i+1)*columns]
+        plugin_table += "|" + "|".join(plugin_sublist) + "|\n"
+    new_readme += plugin_table
+    new_readme += readme_after_plugins
+    return new_readme
+
 def write_plugins(readme, columns: int = 2):
     plugin_description_cache = "plugin_descriptions.json"
     new_readme, readme_after_plugins = empty_section(readme, 'Installed plugins')
@@ -146,8 +158,9 @@ def write_plugins(readme, columns: int = 2):
 with open("README.md", 'r', encoding='utf-8') as readme_file:
     readme = readme_file.read()
 
-new_readme = write_keybinds(readme)
-new_readme = write_plugins(new_readme)
+new_readme_local = write_keybinds(readme)
+new_readme_local = write_plugins(new_readme_local)
+new_readme_local = write_themes(new_readme_local)
 
 with open('README.md', 'w', encoding='utf-8') as readme_file:
-    readme_file.write(new_readme)
+    readme_file.write(new_readme_local)
