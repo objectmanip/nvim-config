@@ -4,7 +4,7 @@ local theme = 'oh-lucy-evening'
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 -- dashboard.section.header.val = brailleart[math.random(1, table.getn(brailleart))]
-dashboard.section.header.val = brailleart[2]
+dashboard.section.header.val = brailleart[1]
 -- Static buttons
 dashboard.section.buttons.val = {
   dashboard.button("e", "  New File", ":ene <BAR> startinsert<CR>"),
