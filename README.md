@@ -19,18 +19,18 @@ make
 |---|---|---|---|
 |aerial|Function Navigation|alpha|Dashboard and Startup|
 |autopairs|Automatic pair completion|avante|AI Code Assistant|
-|blender|Lua script manager tool|blink|Customizable screen blinking effect|
-|bookmarks|Easier session management|dressing|Minimalistic UI Customizer|
-|flash|Simple status line widget|fzf|powerful fuzzy searching tool|
+|blender|Fast and flexible modeling tool integration|blink|Customizable screen blinking effect|
+|bookmarks|Persistent file markers|dressing|Easy Vim Customization|
+|flash|Code completion tool|fzf|powerful fuzzy searching tool|
 |harpoon|Bookmarking system manager|indent-blankline|Automatic line blanking|
 |lualine|Beautiful Status Line|luasnip|Lua Snippet Manager|
-|mason|Dependency package manager|multinput|Multi Input Field Support|
+|mason|Dependency package manager|multinput|Multi Key Input Handler|
 |obsidian|Note taking integration|oil|Buffer Style File Navigation|
 |persistence|Automatic File Saving|plenary|Lua based config manager|
-|project-cli-commands|Command line interface|regexplainer|Visual regex guide tool|
+|project-cli-commands|Command line interface|regexplainer|Interactive Regex Analyzer|
 |telescope|Fuzzy file finder|toggleterm-manager|Automatic Terminal Manager|
 |toggleterm|Dynamic Floating Windows|treesitter|Syntax Tree Parser|
-|twilight|Dark Mode Theme|ufo|Powerful file navigation|
+|twilight|Dark Mode Editor Enhancements|ufo|Powerful file navigation|
 |web-devicons|Integrates Font Icons|which-key|Fuzzy Keybinding Lookup|
 
 # Installed themes
@@ -88,6 +88,8 @@ make
 |n|disabled|enabled||
 |n|enable|disable||
 |n|disable|enable||
+|n|.lua|.lua.old||
+|n|.lua.old|.lua||
 |n|\<leader\> tx|close_terminal_buffers|Close all terminal buffers|
 |n|\<leader\> ni|function() open_config_subpath('/init.lua') end|Open init.lua|
 |n|\<leader\> nm|function() open_config_subpath('/lua/config/mappings.lua') end|Open mappings.lua|
