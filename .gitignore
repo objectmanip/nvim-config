@@ -1,0 +1,9 @@
+undodir/
+.stfolder/
+.stversions/
+harpoon/
+telescope_history
+lazy-lock.json
+README.json
+.DS_Store
+coc-settings.json

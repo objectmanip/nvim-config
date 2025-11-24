@@ -1,0 +1,213 @@
+local M = {
+  'stevearc/oil.nvim',
+  opts = {},
+  -- Optional dependencies
+  dependencies = { { "echasnovski/mini.icons", opts = {} } },
+  -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+}
+
+M.config = function()
+  require("oil").setup({
+    -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
+    -- Set to false if you want some other plugin (e.g. netrw) to open when you edit directories.
+    default_file_explorer = true,
+    -- Id is automatically added at the beginning, and name at the end
+    -- See :help oil-columns
+    columns = {
+      "icon",
+      -- "permissions",
+      -- "size",
+      -- "mtime",
+    },
+    -- Buffer-local options to use for oil buffers
+    buf_options = {
+      buflisted = false,
+      bufhidden = "hide",
+    },
+    -- Window-local options to use for oil buffers
+    win_options = {
+      wrap = false,
+      signcolumn = "no",
+      cursorcolumn = false,
+      foldcolumn = "0",
+      spell = false,
+      list = false,
+      conceallevel = 3,
+      concealcursor = "nvic",
+    },
+    -- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
+    delete_to_trash = true,
+    -- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
+    skip_confirm_for_simple_edits = false,
+    -- Selecting a new/moved/renamed file or directory will prompt you to save changes first
+    -- (:help prompt_save_on_select_new_entry)
+    prompt_save_on_select_new_entry = true,
+    cleanup_delay_ms = 2000,
+    lsp_file_methods = {
+      -- Enable or disable LSP file operations
+      enabled = true,
+      -- Time to wait for LSP file operations to complete before skipping
+      timeout_ms = 1000,
+      -- Set to true to autosave buffers that are updated with LSP willRenameFiles
+      -- Set to "unmodified" to only save unmodified buffers
+      autosave_changes = false,
+    },
+    -- Constrain the cursor to the editable parts of the oil buffer
+    -- Set to `false` to disable, or "name" to keep it on the file names
+    constrain_cursor = "editable",
+    -- Set to true to watch the filesystem for changes and reload oil
+    watch_for_changes = false,
+    -- Keymaps in oil buffer. Can be any value that `vim.keymap.set` accepts OR a table of keymap
+    -- options with a `callback` (e.g. { callback = function() ... end, desc = "", mode = "n" })
+    -- Additionally, if it is a string that matches "actions.<name>",
+    -- it will use the mapping at require("oil.actions").<name>
+    -- Set to `false` to remove a keymap
+    -- See :help oil-actions for a list of all available actions
+    keymaps = {
+      ["g?"] = "actions.show_help",
+      ["<CR>"] = "actions.select",
+      ["<C-s>"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
+      ["<C-h>"] = { "actions.select", opts = { horizontal = true }, desc = "Open the entry in a horizontal split" },
+      ["<C-t>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
+      ["<C-p>"] = "actions.preview", opts = { split = "right" },
+      ["<C-c>"] = "actions.close",
+      ["<C-l>"] = "actions.refresh",
+      ["-"] = "actions.parent",
+      ["_"] = "actions.open_cwd",
+      ["`"] = "actions.cd",
+      ["~"] = { "actions.cd", opts = { scope = "tab" }, desc = ":tcd to the current oil directory", mode = "n" },
+      ["gs"] = "actions.change_sort",
+      ["gx"] = "actions.open_external",
+      ["g."] = "actions.toggle_hidden",
+      ["g\\"] = "actions.toggle_trash",
+      ["<esc>"] = "actions.close"
+    },
+    -- Set to false to disable all of the above keymaps
+    use_default_keymaps = true,
+    view_options = {
+      -- Show files and directories that start with "."
+      show_hidden = true,
+      show_preview = true,
+      -- This function defines what is considered a "hidden" file
+      is_hidden_file = function(name, bufnr)
+        return vim.startswith(name, ".")
+      end,
+      -- This function defines what will never be shown, even when `show_hidden` is set
+      is_always_hidden = function(name, bufnr)
+        return false
+      end,
+      -- Sort file names in a more intuitive order for humans. Is less performant,
+      -- so you may want to set to false if you work with large directories.
+      natural_order = true,
+      -- Sort file and directory names case insensitive
+      case_insensitive = true,
+      sort = {
+        { "type", "asc" },
+        { "name", "asc" },
+      },
+    },
+    -- Extra arguments to pass to SCP when moving/copying files over SSH
+    extra_scp_args = {},
+    -- EXPERIMENTAL support for performing file operations with git
+    git = {
+      -- Return true to automatically git add/mv/rm files
+      add = function(path)
+        return false
+      end,
+      mv = function(src_path, dest_path)
+        return false
+      end,
+      rm = function(path)
+        return false
+      end,
+    },
+    -- Configuration for the floating window in oil.open_float
+    float = {
+      -- Padding around the floating window
+      padding = 1,
+      max_width = 120,
+      min_width = {60, 0.6},
+      max_height = 50,
+      border = "single",
+      win_options = {
+        winblend = 0,
+      },
+      -- optionally override the oil buffers window title with custom function: fun(winid: integer): string
+      get_win_title = nil,
+      -- preview_split: Split direction: "auto", "left", "right", "above", "below".
+      preview_split = "right",
+      -- This is the config that will be passed to nvim_open_win.
+      -- Change values here to customize the layout
+      override = function(conf)
+        return conf
+      end,
+    },
+    -- Configuration for the actions floating preview window
+    preview = {
+      max_width = 0.9,
+      -- min_width = {40, 0.4} means "the greater of 40 columns or 40% of total"
+      min_width = { 40, 0.4 },
+      -- optionally define an integer/float for the exact width of the preview window
+      width = nil,
+      max_height = 0.9,
+      -- min_height = {5, 0.1} means "the greater of 5 columns or 10% of total"
+      min_height = { 5, 0.1 },
+      height = nil,
+      border = "rounded",
+      win_options = {
+        winblend = 0,
+      },
+      -- Whether the preview window is automatically updated when the cursor is moved
+      update_on_cursor_moved = true,
+    },
+    -- Configuration for the floating progress window
+    progress = {
+      max_width = 0.9,
+      min_width = { 40, 0.4 },
+      width = nil,
+      max_height = { 10, 0.9 },
+      min_height = { 5, 0.1 },
+      height = nil,
+      border = "rounded",
+      minimized_border = "none",
+      win_options = {
+        winblend = 0,
+      },
+    },
+    -- Configuration for the floating SSH window
+    ssh = {
+      border = "rounded",
+      -- backend = "ssh",
+    },
+    -- Configuration for the floating keymaps help window
+    keymaps_help = {
+      border = "rounded",
+    },
+  })
+
+  vim.keymap.set('n', '<leader>to', '<cmd>Oil --float --preview<cr>', { desc = 'Oil Toggle', noremap = true })
+  vim.keymap.set('t', '<C-e>', '<C-\\><C-n>', { noremap = true, silent = true })
+  vim.keymap.set('n', '<leader>cc', '<cmd>bd<cr><cmd>bnext<cr>', { noremap = true, silent = true, desc = 'Close Buffer' })
+  vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<cr>', { noremap = true, silent = true, desc = 'Open Telescope UndoTree' })
+
+  local remote_user_dir = '//mnt/user/'
+
+  -- -- Helper: pick LAN or VPN host depending on reachability
+  -- local function pick_host()
+  --   -- try to ping LAN first (fast, 1 attempt)
+  --   local ok = vim.fn.system({ "ping", "-c", "1", "-W", "1", "192.168.178.42" })
+  --   if vim.v.shell_error == 0 then
+  --     return "192.168.178.42"
+  --   else
+  --     return "tower.ide-gopher.ts.net"
+  --   end
+  -- end
+
+  -- Keymaps that use the dynamic host chooser
+  vim.keymap.set("n", "<leader>os", function()
+    local host = "tower"
+    require("oil").open("oil-ssh://root@" .. host .. remote_user_dir)
+  end, { desc = "Open server directory in Oil (LAN or VPN)" })
+end
+
+return M
