@@ -192,17 +192,6 @@ M.config = function()
 
   local remote_user_dir = '//mnt/user/'
 
-  -- -- Helper: pick LAN or VPN host depending on reachability
-  -- local function pick_host()
-  --   -- try to ping LAN first (fast, 1 attempt)
-  --   local ok = vim.fn.system({ "ping", "-c", "1", "-W", "1", "192.168.178.42" })
-  --   if vim.v.shell_error == 0 then
-  --     return "192.168.178.42"
-  --   else
-  --     return "tower.ide-gopher.ts.net"
-  --   end
-  -- end
-
   -- Keymaps that use the dynamic host chooser
   vim.keymap.set("n", "<leader>os", function()
     local host = "tower"
