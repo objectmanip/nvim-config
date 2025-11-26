@@ -1,4 +1,15 @@
 local blink = require("blink.cmp")
+
+local function get_venv(root)
+  for _, name in ipairs({ "venv", ".venv" }) do
+    local path = root .. "/" .. name
+    if vim.fn.isdirectory(path) == 1 then
+      return name  -- basedpyright wants just the folder name
+    end
+  end
+  return nil
+end
+
 return {
   cmd = { 'basedpyright-langserver', '--stdio' },
   filetypes = { "python" },
@@ -16,10 +27,12 @@ return {
       client.server_capabilities.completionProvider.triggerCharacters = {}
     end
   end,
+
   settings = {
     basedpyright = {
       venvPath = ".",
-      venv = "env_nu",
+      venv = "venv",
+      pythonPath = "./venv/bin/python",
       disableLanguageServices = false,
       analysis = {
         autoSearchPaths = true,
