@@ -4,6 +4,8 @@ undodir/
 harpoon/
 telescope_history
 lazy-lock.json
+mason/
+avante/
 README.json
 .DS_Store
 coc-settings.json
