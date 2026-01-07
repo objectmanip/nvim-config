@@ -25,7 +25,7 @@ local M = {
       },
     })
     require("telescope").load_extension("undo")
-    vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
+    vim.keymap.set("n", "<leader>tu", "<cmd>Telescope undo<cr>")
     require("telescope").load_extension("ssh-config")
     vim.keymap.set("n", '<leader>fc', "<cmd>Telescope ssh-config<CR>", { desc = 'Open an ssh connexion'} )
   end,

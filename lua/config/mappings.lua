@@ -277,3 +277,6 @@ function insertFullPath()
 end
 
 map('n', "<leader>yp", insertFullPath, { noremap = true, silent = true })
+-- Unmap Option+U in Insert mode, making it perform no action (<Nop>).
+-- The <M-u> is the common Neovim representation for Alt/Option + u.
+vim.keymap.set('i', '<M-u>', '<Nop>', { noremap = true, silent = true })
