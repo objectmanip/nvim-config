@@ -212,8 +212,9 @@ map('n', '<leader>sr', function() vim.cmd("vertical resize +" ..default_winsize_
 map('n', '<leader>sa', function() vim.cmd("vertical resize -" ..default_winsize_step) end, { desc = 'Decrease Window Width'})
 map('n', '<leader>st', function() vim.cmd("resize +" ..default_winsize_step) end, { desc = 'Increase Window Height'})
 map('n', '<leader>ss', function() vim.cmd("resize -" ..default_winsize_step) end, { desc = 'Decrease Window Height'})
--- map('n', '<leader>fg', '<cmd>resize +500<CR>', { desc = 'Increase Window Height'})
+-- map('n', '</home/suwayomi/.local/share/Tachidesk/downloadsleader>fg', '<cmd>resize +500<CR>', { desc = 'Increase Window Height'})
 map('n', '<leader>cw', '<C-w>c', { desc = 'Close active window'})
+map('n', '<leader>cb', '<cmd>Bdelete<cr>', { desc = 'Close active buffer'})
 map('n', '<leader>co', '<C-w>o', { desc = 'Close other windows'})
 map('n', '<leader>cu', '<C-w>u', { desc = 'Undo window closing'})
 -- expand `cc` into CodeCompanion in the command line

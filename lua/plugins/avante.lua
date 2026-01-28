@@ -27,28 +27,28 @@ local M = {
   --       --     max_tokens = 20480,
   --       --   },
   -- -- GEMINI SETTINGS
-    provider = "gemini",
+  --   provider = "gemini",
+  --   providers = {
+  --     gemini = {
+  --       -- model = "gemini-2.5-pro",
+  --       model = "gemini-2.5-flash",
+  --     },
+  --   },
+  -- },
+  -- CLAUDE SONNET SETTINGS
+    provider = "claude",
     providers = {
-      gemini = {
-        -- model = "gemini-2.5-pro",
-        model = "gemini-2.5-flash",
+      claude = {
+        endpoint = "https://api.anthropic.com",
+        model = "claude-sonnet-4-5-20250929", -- Latest Sonnet 4.5
+        api_key_name = "AVANTE_ANTHROPIC_API_KEY",
+        timeout = 30000,
+        extra_request_body = {
+          temperature = 0.75,
+          max_tokens = 20480,
+        },
       },
     },
-  },
-  -- CLAUDE SONNET SETTINGS
-    -- provider = "claude",
-    -- providers = {
-    --   claude = {
-    --     endpoint = "https://api.anthropic.com",
-    --     model = "claude-sonnet-4-5-20250929", -- Latest Sonnet 4.5
-    --     api_key_name = "AVANTE_ANTHROPIC_API_KEY",
-    --     timeout = 30000,
-    --     extra_request_body = {
-    --       temperature = 0.75,
-    --       max_tokens = 20480,
-    --     },
-    --   },
-    -- },
     behaviour = {
       support_paste_from_clipboard = true,
     },
