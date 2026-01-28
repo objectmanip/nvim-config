@@ -198,8 +198,18 @@ if remap_navigation then
   -- Call the function with your mappings
   set_navigation_mappings(navigation_keys)
 end
+
+-- custom jump behavior: automatically zz after moving multiple lines
+map('n', 's', function()
+  return vim.v.count > 1 and '<down>zz' or 'g<down>'
+end, { expr = true}
+)
+map('n', 't', function()
+  return vim.v.count > 1 and '<up>zz' or 'g<up>'
+  end, { expr = true}
+)
+
 -- console workspace
---
 map("n", "<C-i>", "a")
 map("n", "<C-s>", "30<down>", { noremap = true, silent = true, desc = '30 Lines Down' })
 map2("n", "<C-t>", "", { noremap = true })
