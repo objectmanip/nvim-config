@@ -145,3 +145,18 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+local mygroup = vim.api.nvim_create_augroup("bufdel_custom", { clear = true })
+vim.api.nvim_create_autocmd({ "User" }, {
+	group = mygroup,
+	pattern = "BufDelPre",
+	callback = function(ev)
+        --- the deleted buffer number is saved in ev.data.buf
+    end,
+})
+vim.api.nvim_create_autocmd({ "User" }, {
+	group = mygroup,
+	pattern = "BufDelPost",
+	callback = function(ev)
+        --- the deleted buffer number is saved in ev.data.buf
+    end,
+})

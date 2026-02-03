@@ -7,7 +7,8 @@ local theme_list = {
   'flow',
   'lackluster-mint',
   'kanagawabones',
-  'darkvoid'
+  'darkvoid',
+  'eldritch'
 }
 local theme = theme_list[1]
 vim.cmd("colorscheme " .. theme)

@@ -198,8 +198,18 @@ if remap_navigation then
   -- Call the function with your mappings
   set_navigation_mappings(navigation_keys)
 end
+
+-- custom jump behavior: automatically zz after moving multiple lines
+map('n', 's', function()
+  return vim.v.count > 1 and '<down>zz' or 'g<down>'
+end, { expr = true}
+)
+map('n', 't', function()
+  return vim.v.count > 1 and '<up>zz' or 'g<up>'
+  end, { expr = true}
+)
+
 -- console workspace
---
 map("n", "<C-i>", "a")
 map("n", "<C-s>", "30<down>", { noremap = true, silent = true, desc = '30 Lines Down' })
 map2("n", "<C-t>", "", { noremap = true })
@@ -212,8 +222,9 @@ map('n', '<leader>sr', function() vim.cmd("vertical resize +" ..default_winsize_
 map('n', '<leader>sa', function() vim.cmd("vertical resize -" ..default_winsize_step) end, { desc = 'Decrease Window Width'})
 map('n', '<leader>st', function() vim.cmd("resize +" ..default_winsize_step) end, { desc = 'Increase Window Height'})
 map('n', '<leader>ss', function() vim.cmd("resize -" ..default_winsize_step) end, { desc = 'Decrease Window Height'})
--- map('n', '<leader>fg', '<cmd>resize +500<CR>', { desc = 'Increase Window Height'})
+-- map('n', '</home/suwayomi/.local/share/Tachidesk/downloadsleader>fg', '<cmd>resize +500<CR>', { desc = 'Increase Window Height'})
 map('n', '<leader>cw', '<C-w>c', { desc = 'Close active window'})
+map('n', '<leader>cb', '<cmd>Bdelete<cr>', { desc = 'Close active buffer'})
 map('n', '<leader>co', '<C-w>o', { desc = 'Close other windows'})
 map('n', '<leader>cu', '<C-w>u', { desc = 'Undo window closing'})
 -- expand `cc` into CodeCompanion in the command line
