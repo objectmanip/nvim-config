@@ -49,10 +49,10 @@ local M = {
     --     },
     --   },
     -- },
-    behaviour = {
-      support_paste_from_clipboard = true,
-    },
-  },
+    -- behaviour = {
+    --   support_paste_from_clipboard = true,
+  --   },
+  -- },
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "nvim-lua/plenary.nvim",
