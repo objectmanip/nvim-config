@@ -11,7 +11,14 @@ if not vim.loop.fs_stat(lazypath) then
    })
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup("plugins")
+local plugins = {
+    { import = 'plugins' },       -- this imports /lua/plugins
+    { import = 'plugins.ai' },
+    { import = 'plugins.themes'}
+}
+
+require('lazy').setup(plugins, opts)
+-- require("lazy").setup("plugins")
 -- local preset = require("markview.presets");
 --
 -- require("markview").setup({
