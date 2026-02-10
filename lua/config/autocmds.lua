@@ -45,6 +45,7 @@ autocmd("VimEnter", {
     if vim.o.columns > 200 and #vim.api.nvim_list_wins() == 1 then
       vim.cmd("vsplit")
       vim.cmd("wincmd l")
+      vim.cmd("vertical resize " .. math.floor(vim.o.columns * 2 / 3))
     end
   end,
 })
