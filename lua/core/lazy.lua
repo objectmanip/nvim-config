@@ -14,7 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
     { import = 'plugins' },       -- this imports /lua/plugins
     { import = 'plugins.ai' },
-    { import = 'plugins.themes'}
+    { import = 'plugins.themes'},
+    { import = 'plugins.dap'}
 }
 
 require('lazy').setup(plugins, opts)
