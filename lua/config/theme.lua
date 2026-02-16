@@ -8,9 +8,10 @@ local theme_list = {
   'lackluster-mint',
   'kanagawabones',
   'darkvoid',
-  'eldritch'
+  'eldritch',
+  'moonfly'
 }
-local theme = theme_list[1]
+local theme = theme_list[5]
 vim.cmd("colorscheme " .. theme)
 require('lualine').setup{
     options = {
