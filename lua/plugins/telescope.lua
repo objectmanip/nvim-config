@@ -1,5 +1,5 @@
 local M = {
-    'nvim-telescope/telescope.nvim', tag = '0.1.6',
+    'nvim-telescope/telescope.nvim', --, tag = '0.1.6',
        dependencies = {
       'nvim-lua/plenary.nvim' ,
       {
@@ -185,6 +185,16 @@ end, { noremap = true, silent = true, desc = "LSP definition with fallback to gr
 --   end
 -- end, { noremap = true, silent = true })
 -- vim.keymap.set("n", "gd", function() require('telescope.builtin').lsp_definitions() end, { noremap = true, silent = true })
+require('telescope').setup({
+  defaults = {
+    buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker,
+  },
+  pickers = {
+    find_files = {
+      preview = {}
+    }
+  }
+})
 
 return M
 
