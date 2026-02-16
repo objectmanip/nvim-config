@@ -1,7 +1,7 @@
 # About
 Custom neovim config using lazy.vim and coc.
 # Customizations
-Dashboard is customized in `lua/plugins/alpha.lua`.
+Dashooard is customized in `lua/plugins/alpha.lua`.
 # Requirements
 ripgrep
 fd
